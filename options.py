@@ -1,6 +1,7 @@
 import pygame
 from save import is_disabled
 
+
 class Options:
     def __init__(self, gui):
         self.choose_who_you_want_to_play_with = False
@@ -38,6 +39,9 @@ class Options:
         self.gui.won(winner)
         if 18 <= pos_click[0] <= 238 and 286 <= pos_click[1] <= 382:
             self.playing = True
+            load_bot = is_disabled(True)
+            load_player = is_disabled(False)
+            self.gui.show_menu(load_bot, load_player)
             return True
 
         elif 373 <= pos_click[0] <= 593 and 287 <= pos_click[1] <= 383:
@@ -58,11 +62,3 @@ class Options:
                         chosed = self.choose_with_play(event.pos)
 
             clock.tick(30)
-
-    def reset(self):
-        self.choose_who_you_want_to_play_with = False
-        self.choose_what_kind_of_game = True
-        self.play_with_bot = False
-        self.choose_new_game = True
-        self.playing = True
-
